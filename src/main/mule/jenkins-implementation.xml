@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config_Jenkins_demo" doc:name="HTTP Listener config" doc:id="3be4931f-6bdc-47bc-84e3-f0e58eb9c9c3" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jenkins-demo" doc:id="81302240-a2fa-4aed-8f86-79e7ac339607" >
+		<http:listener doc:name="Listener" doc:id="213a41de-9a0b-4f50-876f-e1c13e987d66" config-ref="HTTP_Listener_config_Jenkins_demo" path="/demo"/>
+		<logger level="INFO" doc:name="flow_start" doc:id="dda1e65b-a468-4584-b359-575607f55f72" message='#[output application/json&#10;---&#10;{&#10;	api_name:"jenkins-demo",&#10;	description: "before_jenkins_demo_payload...",&#10;	corelation_id:correlationId&#10;}]'/>
+		<set-payload value='#["Hello World this is the JENKINS-DEMO"]' doc:name="payload_of_the_jenkins_demo" doc:id="a02671f4-7e34-48ed-9969-76218ba885c6" />
+		<logger level="INFO" doc:name="flow_end" doc:id="683cc445-824b-41e2-a2ce-0b5e34f0a2ef" message='#[output application/json&#10;---&#10;{&#10;	api_name:"jenkins-demo",&#10;	description:"after_jenkins_demo_getting_paylaod",&#10;	payload:payload,&#10;	correlation:correlationId&#10;	&#10;}]'/>
+	</flow>
+</mule>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="jenkins-implementation-test-suite.xml" />
+	<munit:test name="jenkins-implementation-test-suite-jenkins-demoTest" doc:id="7e2b4be9-8cdf-48db-af5c-7064ab8d1fa0" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to jenkins-demo" doc:id="912a1e9f-25c0-47e4-9c9c-576dd7778b33" name="jenkins-demo"/>
+		</munit:execution>
+		<munit:validation >
+			<logger level="INFO" doc:name="Logegr Payload" doc:id="f5a3a395-1566-4701-aa7f-3614eaaf3ed6" message="#[payload]"/>
+			<munit-tools:assert doc:name="Assert paylaod not Null" doc:id="85fde5c9-c758-4516-b664-ac446e1b9e34" />
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
